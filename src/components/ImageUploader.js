@@ -1,5 +1,6 @@
 import React from "react";
 import image from "../assets/images/image.svg";
+import Dropzone from "./Dropzone";
 
 const ImageUploader = () => {
   return (
@@ -14,6 +15,7 @@ const ImageUploader = () => {
       <button className="text-center bg-[#2F80ED] rounded-[8px] p-3 text-white">
         Choose a file
       </button>
+      <Dropzone />
     </div>
   );
 };
