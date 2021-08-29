@@ -20,7 +20,9 @@ const ImageUploader = (props) => {
       <h2 className="text-[#828282]">File type should be .jpg or .png</h2>
       <div
         {...getRootProps({ className: "dropzone" })}
-        className="dragNDrop cursor-pointer w-full flex flex-col items-center justify-center bg-[#F6F8FB] p-12 space-y-12 border border-dashed border-[#97BEF4] rounded-[12px]"
+        className={`dragNDrop cursor-pointer w-full flex flex-col items-center justify-center bg-[#F6F8FB] p-12 space-y-12 border border-dashed border-[#97BEF4] ${
+          acceptedFiles.length > 0 ? "border-green-400" : ""
+        } rounded-[12px]`}
       >
         <img
           src={
