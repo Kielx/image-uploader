@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import image from "../assets/images/image.svg";
 import { useDropzone } from "react-dropzone";
 import {
@@ -8,11 +8,15 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 
-const ImageUploader = (props) => {
-  const [loading, setLoading] = useState(false);
-
+const ImageUploader = ({
+  setProgress,
+  setLoading,
+  setLoaded,
+  setUploadedImage,
+}) => {
   const {
     acceptedFiles,
+    fileRejections,
     getRootProps,
     getInputProps,
     open,
@@ -22,6 +26,7 @@ const ImageUploader = (props) => {
     accept: "image/jpeg, image/png",
     maxFiles: 1,
     multiple: false,
+    maxSize: 5000000,
   });
 
   const acceptedFileItems = acceptedFiles.map((file) => (
@@ -49,9 +54,9 @@ const ImageUploader = (props) => {
       "state_changed",
       (snapshot) => {
         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-        const progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log("Upload is " + progress + "% done");
+        setLoading(true);
+        setProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        //console.log("Upload is " + progress + "% done");
         switch (snapshot.state) {
           case "paused":
             console.log("Upload is paused");
@@ -66,6 +71,7 @@ const ImageUploader = (props) => {
       (error) => {
         // A full list of error codes is available at
         // https://firebase.google.com/docs/storage/web/handle-errors
+        console.log(error);
         switch (error.code) {
           case "storage/unauthorized":
             // User doesn't have permission to access the object
@@ -85,6 +91,8 @@ const ImageUploader = (props) => {
       },
       () => {
         // Upload completed successfully, now we can get the download URL
+        setLoading(false);
+        setLoaded(true);
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           console.log("File available at", downloadURL);
         });
@@ -92,13 +100,25 @@ const ImageUploader = (props) => {
     );
   };
 
+  useEffect(() => {
+    if (acceptedFiles.length > 0) {
+      setUploadedImage(URL.createObjectURL(acceptedFiles[0]));
+    }
+  }, [acceptedFiles, setUploadedImage]);
+
   return (
     <div className="relative flex flex-col space-y-6 items-center w-full max-w-md shadow-md bg-white rounded-[12px] m-auto py-12 px-8">
       <h1 className="text-[#4F4F4F] text-2xl ">Upload your image</h1>
       {isDragReject ? (
-        <h2 className="text-red-500">This file type is not accepted</h2>
+        <h2 className="text-red-500">File must be of image type</h2>
       ) : (
-        <h2 className="text-[#828282]">File type should be .jpg or .png</h2>
+        <h2
+          className={`${
+            fileRejections.length > 0 ? "text-red-500" : "text-[#828282]"
+          } text-center`}
+        >
+          File should be of image type with max size of 5MB
+        </h2>
       )}
 
       <div
