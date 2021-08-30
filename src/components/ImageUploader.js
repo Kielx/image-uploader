@@ -16,7 +16,6 @@ const ImageUploader = (props) => {
     getRootProps,
     getInputProps,
     open,
-    isDragActive,
     isDragAccept,
     isDragReject,
   } = useDropzone({
@@ -94,19 +93,23 @@ const ImageUploader = (props) => {
   };
 
   return (
-    <div className="flex flex-col space-y-6 items-center w-full max-w-md shadow-md bg-white rounded-[12px] m-auto py-12 px-8">
+    <div className="relative flex flex-col space-y-6 items-center w-full max-w-md shadow-md bg-white rounded-[12px] m-auto py-12 px-8">
       <h1 className="text-[#4F4F4F] text-2xl ">Upload your image</h1>
-      <h2 className="text-[#828282]">File type should be .jpg or .png</h2>
+      {isDragReject ? (
+        <h2 className="text-red-500">This file type is not accepted</h2>
+      ) : (
+        <h2 className="text-[#828282]">File type should be .jpg or .png</h2>
+      )}
+
       <div
         {...getRootProps({
           className: "dropzone",
         })}
-        isDragActive={isDragActive}
-        isDragReject={isDragReject}
-        isDragAccept={isDragAccept}
-        className={`transition-all dragNDrop cursor-pointer w-full flex flex-col items-center justify-center bg-[#F6F8FB] p-12 space-y-12 border border-dashed border-[#97BEF4] ${
-          acceptedFiles.length > 0 ? "border-green-400" : ""
-        } ${isDragActive ? "ring-2 ring-inset" : ""} rounded-[12px]`}
+        className={`transition-all dragNDrop cursor-pointer w-full flex flex-col items-center justify-center bg-[#F6F8FB] rounded-[12px] p-12 space-y-12 border border-dashed border-[#97BEF4] ${
+          acceptedFiles.length > 0 ? "border-green-400 p-4" : ""
+        } ${isDragAccept ? "ring-2 ring-green-500 border-transparent" : ""} ${
+          isDragReject ? "ring-2 ring-red-500 border-transparent" : ""
+        }`}
       >
         <img
           src={
@@ -115,7 +118,9 @@ const ImageUploader = (props) => {
               : image
           }
           alt="cartoonish mountains"
-          className="max-w-[43%] max-h-[25%] rounded-lg"
+          className={`max-w-[43%] max-h-[25%] rounded-lg ${
+            acceptedFiles.length > 0 ? "w-full max-w-full max-h-full" : ""
+          }`}
         ></img>
         <span className="text-[#BDBDBD]">
           {acceptedFiles.length > 0
@@ -123,6 +128,7 @@ const ImageUploader = (props) => {
             : "Drag & Drop your image here"}
         </span>
       </div>
+
       <input {...getInputProps()} />
       {acceptedFiles.length > 0 ? (
         <button
