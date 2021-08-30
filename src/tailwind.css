@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn-clicked {
+  @apply pointer-events-none w-1/4 transition-all bg-green-500  text-white px-2 py-3 text-sm rounded-xl font-bold;
+}
+
+.btn-copy {
+  @apply w-1/4 transition-all bg-blue-500 hover:bg-blue-600 text-white px-2 py-3 text-sm rounded-xl font-bold;
+}
