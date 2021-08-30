@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import image from "../assets/images/image.svg";
 import { useDropzone } from "react-dropzone";
 import {
@@ -9,9 +9,20 @@ import {
 } from "firebase/storage";
 
 const ImageUploader = (props) => {
-  const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
+  const [loading, setLoading] = useState(false);
+
+  const {
+    acceptedFiles,
+    getRootProps,
+    getInputProps,
+    open,
+    isDragActive,
+    isDragAccept,
+    isDragReject,
+  } = useDropzone({
     accept: "image/jpeg, image/png",
-    maxFiles: 2,
+    maxFiles: 1,
+    multiple: false,
   });
 
   const acceptedFileItems = acceptedFiles.map((file) => (
@@ -27,7 +38,7 @@ const ImageUploader = (props) => {
     // Create the file metadata
     /** @type {any} */
     const metadata = {
-      contentType: "image/jpeg",
+      contentType: "image/*",
     };
 
     // Upload file and metadata to the object 'images/mountains.jpg'
@@ -87,10 +98,15 @@ const ImageUploader = (props) => {
       <h1 className="text-[#4F4F4F] text-2xl ">Upload your image</h1>
       <h2 className="text-[#828282]">File type should be .jpg or .png</h2>
       <div
-        {...getRootProps({ className: "dropzone" })}
-        className={`dragNDrop cursor-pointer w-full flex flex-col items-center justify-center bg-[#F6F8FB] p-12 space-y-12 border border-dashed border-[#97BEF4] ${
+        {...getRootProps({
+          className: "dropzone",
+        })}
+        isDragActive={isDragActive}
+        isDragReject={isDragReject}
+        isDragAccept={isDragAccept}
+        className={`transition-all dragNDrop cursor-pointer w-full flex flex-col items-center justify-center bg-[#F6F8FB] p-12 space-y-12 border border-dashed border-[#97BEF4] ${
           acceptedFiles.length > 0 ? "border-green-400" : ""
-        } rounded-[12px]`}
+        } ${isDragActive ? "ring-2 ring-inset" : ""} rounded-[12px]`}
       >
         <img
           src={
@@ -118,7 +134,10 @@ const ImageUploader = (props) => {
       ) : (
         <>
           <span className="text-[#BDBDBD]">OR</span>
-          <button className="text-center bg-[#2F80ED] hover:bg-[#2666be] transition-all rounded-[8px] p-3 text-white hover:">
+          <button
+            onClick={open}
+            className="text-center bg-[#2F80ED] hover:bg-[#2666be] transition-all rounded-[8px] p-3 text-white hover:"
+          >
             Choose a file
           </button>
         </>
