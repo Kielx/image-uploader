@@ -12,6 +12,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [downloadURL, setDownloadURL] = useState("");
   const [uploadedImage, setUploadedImage] = useState(null);
 
   return (
@@ -24,12 +25,16 @@ function App() {
             setProgress={setProgress}
             setLoaded={setLoaded}
             setUploadedImage={setUploadedImage}
+            setDownloadURL={setDownloadURL}
           />
         ) : (
           <ProgressBar progress={progress} />
         )
       ) : (
-        <ImageUploaded uploadedImage={uploadedImage}></ImageUploaded>
+        <ImageUploaded
+          uploadedImage={uploadedImage}
+          downloadURL={downloadURL}
+        ></ImageUploaded>
       )}
 
       <Footer></Footer>

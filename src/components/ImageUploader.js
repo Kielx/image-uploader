@@ -13,6 +13,7 @@ const ImageUploader = ({
   setLoading,
   setLoaded,
   setUploadedImage,
+  setDownloadURL,
 }) => {
   const {
     acceptedFiles,
@@ -30,9 +31,12 @@ const ImageUploader = ({
   });
 
   const acceptedFileItems = acceptedFiles.map((file) => (
-    <span key={file.path}>
-      {file.path} - {(file.size / 1000000).toFixed(2)} MB
-    </span>
+    <div className="flex flex-col max-w-full text-center">
+      <span key={file.path} className="truncate ">
+        {file.path}
+      </span>
+      <span>{(file.size / 1000000).toFixed(2)} MB</span>
+    </div>
   ));
 
   const upload = (file) => {
@@ -94,6 +98,7 @@ const ImageUploader = ({
         setLoading(false);
         setLoaded(true);
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setDownloadURL(downloadURL);
           console.log("File available at", downloadURL);
         });
       }
@@ -142,7 +147,7 @@ const ImageUploader = ({
             acceptedFiles.length > 0 ? "w-full max-w-full max-h-full" : ""
           }`}
         ></img>
-        <span className="text-[#BDBDBD]">
+        <span className="text-[#BDBDBD] flex max-w-full">
           {acceptedFiles.length > 0
             ? acceptedFileItems
             : "Drag & Drop your image here"}
@@ -153,7 +158,7 @@ const ImageUploader = ({
       {acceptedFiles.length > 0 ? (
         <button
           onClick={() => upload(acceptedFiles[0])}
-          className="text-center bg-green-500 hover:bg-green-600 transition-all rounded-[8px] p-3 text-white"
+          className="font-bold text-center bg-green-500 hover:bg-green-600 transition-all rounded-[8px] p-3 text-white"
         >
           Upload file
         </button>
@@ -162,7 +167,7 @@ const ImageUploader = ({
           <span className="text-[#BDBDBD]">OR</span>
           <button
             onClick={open}
-            className="text-center bg-[#2F80ED] hover:bg-[#2666be] transition-all rounded-[8px] p-3 text-white hover:"
+            className="font-bold text-center bg-[#2F80ED] hover:bg-[#2666be] transition-all rounded-[8px] p-3 text-white hover:"
           >
             Choose a file
           </button>
