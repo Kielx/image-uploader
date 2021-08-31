@@ -115,12 +115,14 @@ const ImageUploader = ({
     <div className="relative flex flex-col space-y-6 items-center w-full max-w-md shadow-md bg-white rounded-[12px] m-auto py-12 px-8">
       <h1 className="text-[#4F4F4F] text-2xl ">Upload your image</h1>
       {isDragReject ? (
-        <h2 className="text-red-500">File must be of image type</h2>
+        <h2 className="text-red-500 min-h-[3rem] text-center">
+          File must be of image type
+        </h2>
       ) : (
         <h2
           className={`${
             fileRejections.length > 0 ? "text-red-500" : "text-[#828282]"
-          } text-center`}
+          } text-center min-h-[3rem]`}
         >
           File should be of image type with max size of 5MB
         </h2>
