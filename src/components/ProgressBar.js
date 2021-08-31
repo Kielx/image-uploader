@@ -8,7 +8,7 @@ const ProgressBar = ({ progress }) => {
         <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-100">
           <div
             style={{ width: `${progress}%` }}
-            className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500"
+            className="transition-all shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500"
           ></div>
         </div>
       </div>
