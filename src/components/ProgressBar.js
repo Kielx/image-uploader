@@ -1,6 +1,8 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
-const ProgressBar = ({ progress }) => {
+const ProgressBar = () => {
+  const progress = useSelector((state) => state.progress.value);
   return (
     <div className="relative flex flex-col space-y-6 items-start w-full max-w-md shadow-md bg-white rounded-[12px] m-auto py-12 px-8">
       <h1 className="text-[#4F4F4F] text-xl">Uploading...</h1>

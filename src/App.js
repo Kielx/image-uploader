@@ -11,7 +11,6 @@ import firebase from "./firebase/firebase";
 function App() {
   const [loading, setLoading] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const [progress, setProgress] = useState(0);
   const [downloadURL, setDownloadURL] = useState("");
   const [uploadedImage, setUploadedImage] = useState(null);
 
@@ -22,13 +21,12 @@ function App() {
         !loading ? (
           <ImageUploader
             setLoading={setLoading}
-            setProgress={setProgress}
             setLoaded={setLoaded}
             setUploadedImage={setUploadedImage}
             setDownloadURL={setDownloadURL}
           />
         ) : (
-          <ProgressBar progress={progress} />
+          <ProgressBar />
         )
       ) : (
         <ImageUploaded

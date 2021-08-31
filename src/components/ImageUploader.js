@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setProgress } from "../redux/progressSlice";
 import image from "../assets/images/image.svg";
 import { useDropzone } from "react-dropzone";
 import {
@@ -9,12 +11,12 @@ import {
 } from "firebase/storage";
 
 const ImageUploader = ({
-  setProgress,
   setLoading,
   setLoaded,
   setUploadedImage,
   setDownloadURL,
 }) => {
+  const dispatch = useDispatch();
   const {
     acceptedFiles,
     fileRejections,
@@ -59,7 +61,9 @@ const ImageUploader = ({
       (snapshot) => {
         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
         setLoading(true);
-        setProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        dispatch(
+          setProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+        );
         //console.log("Upload is " + progress + "% done");
         switch (snapshot.state) {
           case "paused":
