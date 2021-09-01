@@ -15,7 +15,7 @@ function App() {
   const loading = useSelector((state) => state.imageUpload.loading);
 
   return (
-    <div className="App min-w-screen min-h-screen w-full h-full bg-[#FAFAFB] flex flex-col">
+    <div className="App min-w-screen min-h-screen w-full h-full bg-[#FAFAFB] flex flex-col p-2">
       {/*First Check if the image is not loaded - if it is then check if it should display upload component or progress when loading*/}
       {!loaded ? (
         !loading ? (

@@ -18,6 +18,7 @@ import {
 
 const ImageUploader = () => {
   const dispatch = useDispatch();
+
   const {
     acceptedFiles,
     fileRejections,
@@ -144,12 +145,12 @@ const ImageUploader = () => {
               ? URL.createObjectURL(acceptedFiles[0])
               : image
           }
-          alt="cartoonish mountains"
-          className={`max-w-[43%] max-h-[25%] rounded-lg ${
-            acceptedFiles.length > 0 ? "w-full max-w-full max-h-full" : ""
+          alt="upload placeholder"
+          className={`max-w-64 max-h-64 object-scale-down rounded-lg ${
+            acceptedFiles.length > 0 ? "w-full max-w-full" : ""
           }`}
         ></img>
-        <span className="text-[#BDBDBD] flex max-w-full">
+        <span className="text-[#BDBDBD] flex max-w-full text-center">
           {acceptedFiles.length > 0
             ? acceptedFileItems
             : "Drag & Drop your image here"}
