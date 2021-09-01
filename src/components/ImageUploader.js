@@ -1,6 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setProgress } from "../redux/progressSlice";
+import {
+  setLoading,
+  setLoaded,
+  setUploadedImage,
+  setDownloadURL,
+} from "../redux/imageUploadSlice";
 import image from "../assets/images/image.svg";
 import { useDropzone } from "react-dropzone";
 import {
@@ -10,12 +16,7 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 
-const ImageUploader = ({
-  setLoading,
-  setLoaded,
-  setUploadedImage,
-  setDownloadURL,
-}) => {
+const ImageUploader = () => {
   const dispatch = useDispatch();
   const {
     acceptedFiles,
@@ -60,7 +61,7 @@ const ImageUploader = ({
       "state_changed",
       (snapshot) => {
         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-        setLoading(true);
+        dispatch(setLoading(true));
         dispatch(
           setProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
         );
@@ -99,21 +100,20 @@ const ImageUploader = ({
       },
       () => {
         // Upload completed successfully, now we can get the download URL
-        setLoading(false);
-        setLoaded(true);
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          setDownloadURL(downloadURL);
-          console.log("File available at", downloadURL);
-        });
+        dispatch(setLoading(false));
+        dispatch(setLoaded(true));
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) =>
+          dispatch(setDownloadURL(downloadURL))
+        );
       }
     );
   };
 
   useEffect(() => {
     if (acceptedFiles.length > 0) {
-      setUploadedImage(URL.createObjectURL(acceptedFiles[0]));
+      dispatch(setUploadedImage(URL.createObjectURL(acceptedFiles[0])));
     }
-  }, [acceptedFiles, setUploadedImage]);
+  }, [acceptedFiles, dispatch]);
 
   return (
     <div className="relative flex flex-col space-y-6 items-center w-full max-w-md shadow-md bg-white rounded-[12px] m-auto py-12 px-8">
