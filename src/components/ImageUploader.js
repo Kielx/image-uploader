@@ -1,4 +1,12 @@
 import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setProgress } from "../redux/progressSlice";
+import {
+  setLoading,
+  setLoaded,
+  setUploadedImage,
+  setDownloadURL,
+} from "../redux/imageUploadSlice";
 import image from "../assets/images/image.svg";
 import { useDropzone } from "react-dropzone";
 import {
@@ -8,13 +16,9 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 
-const ImageUploader = ({
-  setProgress,
-  setLoading,
-  setLoaded,
-  setUploadedImage,
-  setDownloadURL,
-}) => {
+const ImageUploader = () => {
+  const dispatch = useDispatch();
+
   const {
     acceptedFiles,
     fileRejections,
@@ -31,18 +35,14 @@ const ImageUploader = ({
   });
 
   const acceptedFileItems = acceptedFiles.map((file) => (
-    <div className="flex flex-col max-w-full text-center">
-      <span key={file.path} className="truncate ">
-        {file.path}
-      </span>
+    <div key={file.path} className="flex flex-col max-w-full text-center">
+      <span className="truncate ">{file.path}</span>
       <span>{(file.size / 1000000).toFixed(2)} MB</span>
     </div>
   ));
 
   const upload = (file) => {
     const storage = getStorage();
-    console.log(file);
-
     // Create the file metadata
     /** @type {any} */
     const metadata = {
@@ -58,15 +58,17 @@ const ImageUploader = ({
       "state_changed",
       (snapshot) => {
         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-        setLoading(true);
-        setProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        dispatch(setLoading(true));
+        dispatch(
+          setProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+        );
         //console.log("Upload is " + progress + "% done");
         switch (snapshot.state) {
           case "paused":
-            console.log("Upload is paused");
+            //console.log("Upload is paused");
             break;
           case "running":
-            console.log("Upload is running");
+            //console.log("Upload is running");
             break;
           default:
             break;
@@ -75,7 +77,7 @@ const ImageUploader = ({
       (error) => {
         // A full list of error codes is available at
         // https://firebase.google.com/docs/storage/web/handle-errors
-        console.log(error);
+        //console.log(error);
         switch (error.code) {
           case "storage/unauthorized":
             // User doesn't have permission to access the object
@@ -95,21 +97,20 @@ const ImageUploader = ({
       },
       () => {
         // Upload completed successfully, now we can get the download URL
-        setLoading(false);
-        setLoaded(true);
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          setDownloadURL(downloadURL);
-          console.log("File available at", downloadURL);
-        });
+        dispatch(setLoading(false));
+        dispatch(setLoaded(true));
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) =>
+          dispatch(setDownloadURL(downloadURL))
+        );
       }
     );
   };
 
   useEffect(() => {
     if (acceptedFiles.length > 0) {
-      setUploadedImage(URL.createObjectURL(acceptedFiles[0]));
+      dispatch(setUploadedImage(URL.createObjectURL(acceptedFiles[0])));
     }
-  }, [acceptedFiles, setUploadedImage]);
+  }, [acceptedFiles, dispatch]);
 
   return (
     <div className="relative flex flex-col space-y-6 items-center w-full max-w-md shadow-md bg-white rounded-[12px] m-auto py-12 px-8">
@@ -144,12 +145,12 @@ const ImageUploader = ({
               ? URL.createObjectURL(acceptedFiles[0])
               : image
           }
-          alt="cartoonish mountains"
-          className={`max-w-[43%] max-h-[25%] rounded-lg ${
-            acceptedFiles.length > 0 ? "w-full max-w-full max-h-full" : ""
+          alt="upload placeholder"
+          className={`max-w-64 max-h-64 object-scale-down rounded-lg ${
+            acceptedFiles.length > 0 ? "w-full max-w-full" : ""
           }`}
         ></img>
-        <span className="text-[#BDBDBD] flex max-w-full">
+        <span className="text-[#BDBDBD] flex max-w-full text-center">
           {acceptedFiles.length > 0
             ? acceptedFileItems
             : "Drag & Drop your image here"}

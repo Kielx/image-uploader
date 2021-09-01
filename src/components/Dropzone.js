@@ -24,7 +24,6 @@ const Dropzone = (props) => {
     </li>
   ));
 
-  console.log(acceptedFiles);
   return (
     <section className="container">
       <div {...getRootProps({ className: "dropzone" })}>
