@@ -44,8 +44,6 @@ const ImageUploader = () => {
 
   const upload = (file) => {
     const storage = getStorage();
-    console.log(file);
-
     // Create the file metadata
     /** @type {any} */
     const metadata = {
@@ -68,10 +66,10 @@ const ImageUploader = () => {
         //console.log("Upload is " + progress + "% done");
         switch (snapshot.state) {
           case "paused":
-            console.log("Upload is paused");
+            //console.log("Upload is paused");
             break;
           case "running":
-            console.log("Upload is running");
+            //console.log("Upload is running");
             break;
           default:
             break;
@@ -80,7 +78,7 @@ const ImageUploader = () => {
       (error) => {
         // A full list of error codes is available at
         // https://firebase.google.com/docs/storage/web/handle-errors
-        console.log(error);
+        //console.log(error);
         switch (error.code) {
           case "storage/unauthorized":
             // User doesn't have permission to access the object
