@@ -113,16 +113,20 @@ const ImageUploader = () => {
   }, [acceptedFiles, dispatch]);
 
   return (
-    <div className="relative flex flex-col space-y-6 items-center w-full max-w-md shadow-md bg-white rounded-[12px] m-auto py-12 px-8">
-      <h1 className="text-[#4F4F4F] text-2xl ">Upload your image</h1>
+    <div className="relative flex flex-col space-y-6 items-center w-full max-w-md shadow-md bg-white dark:bg-dp01 rounded-[12px] m-auto py-12 px-8">
+      <h1 className="text-[#4F4F4F] text-2xl dark:text-grayGray-100">
+        Upload your image
+      </h1>
       {isDragReject ? (
-        <h2 className="text-red-500 min-h-[3rem] text-center">
+        <h2 className="text-red-500 dark:text-red-400 min-h-[3rem] text-center">
           File must be of image type
         </h2>
       ) : (
         <h2
           className={`${
-            fileRejections.length > 0 ? "text-red-500" : "text-[#828282]"
+            fileRejections.length > 0
+              ? "text-red-500"
+              : "text-[#828282] dark:text-grayGray-500"
           } text-center min-h-[3rem]`}
         >
           File should be of image type with max size of 5MB
@@ -133,10 +137,16 @@ const ImageUploader = () => {
         {...getRootProps({
           className: "dropzone",
         })}
-        className={`transition-all dragNDrop cursor-pointer w-full flex flex-col items-center justify-center bg-[#F6F8FB] rounded-[12px] p-12 space-y-12 border border-dashed border-[#97BEF4] ${
+        className={`transition-all dragNDrop cursor-pointer w-full flex flex-col items-center justify-center bg-[#F6F8FB] dark:bg-dp03 rounded-[12px] p-12 space-y-12 border border-dashed border-[#97BEF4]  dark:border-opacity-40 ${
           acceptedFiles.length > 0 ? "border-green-400 p-4" : ""
-        } ${isDragAccept ? "ring-2 ring-green-500 border-transparent" : ""} ${
-          isDragReject ? "ring-2 ring-red-500 border-transparent" : ""
+        } ${
+          isDragAccept
+            ? "ring-2 ring-green-500 dark:ring-green-400 border-transparent dark:border-transparent"
+            : ""
+        } ${
+          isDragReject
+            ? "ring-2 ring-red-500 dark:ring-red-400 border-transparent dark:border-transparent"
+            : ""
         }`}
       >
         <img
@@ -150,7 +160,7 @@ const ImageUploader = () => {
             acceptedFiles.length > 0 ? "w-full max-w-full" : ""
           }`}
         ></img>
-        <span className="text-[#BDBDBD] flex max-w-full text-center">
+        <span className="text-[#BDBDBD] dark:text-grayGray-500 flex max-w-full text-center">
           {acceptedFiles.length > 0
             ? acceptedFileItems
             : "Drag & Drop your image here"}
@@ -167,10 +177,10 @@ const ImageUploader = () => {
         </button>
       ) : (
         <>
-          <span className="text-[#BDBDBD]">OR</span>
+          <span className="text-[#BDBDBD] dark:text-grayGray-500">OR</span>
           <button
             onClick={open}
-            className="font-bold text-center bg-[#2F80ED] hover:bg-[#2666be] transition-all rounded-[8px] p-3 text-white hover:"
+            className="font-bold text-center bg-[#2F80ED] hover:bg-[#2666be] dark:bg-blue-500 dark:hover:bg-blue-600 transition-all rounded-[8px] p-3 text-white hover:"
           >
             Choose a file
           </button>

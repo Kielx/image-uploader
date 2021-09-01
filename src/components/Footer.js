@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="text-sm text-center text-gray-500 pb-2 pt-5">
+    <div className="text-sm text-center text-gray-500 dark:text-grayGray-500 pb-2 pt-5">
       {`© Copyright 2021 ${
         new Date().getFullYear() > 2021 ? "- " + new Date().getFullYear() : ""
       } `}
