@@ -17,24 +17,20 @@ function App() {
 
   return (
     <div className="App min-w-screen min-h-screen w-full h-full bg-[#FAFAFB] flex flex-col p-2">
-      {/*First Check if the image is not loaded - if it is then check if it should display upload component or progress when loading*/}
-      {!loaded ? (
-        !loading ? (
-          <Suspense fallback={<LoadingSpinner />}>
+      <Suspense fallback={<LoadingSpinner />}>
+        {/*First Check if the image is not loaded - if it is then check if it should display upload component or progress when loading*/}
+        {!loaded ? (
+          !loading ? (
             <ImageUploader />
-          </Suspense>
-        ) : (
-          <Suspense fallback={<LoadingSpinner />}>
+          ) : (
             <ProgressBar />
-          </Suspense>
-        )
-      ) : (
-        <Suspense fallback={<LoadingSpinner />}>
+          )
+        ) : (
           <ImageUploaded></ImageUploaded>
-        </Suspense>
-      )}
+        )}
 
-      <Footer></Footer>
+        <Footer></Footer>
+      </Suspense>
     </div>
   );
 }
