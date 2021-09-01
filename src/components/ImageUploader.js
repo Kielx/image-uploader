@@ -34,10 +34,8 @@ const ImageUploader = () => {
   });
 
   const acceptedFileItems = acceptedFiles.map((file) => (
-    <div className="flex flex-col max-w-full text-center">
-      <span key={file.path} className="truncate ">
-        {file.path}
-      </span>
+    <div key={file.path} className="flex flex-col max-w-full text-center">
+      <span className="truncate ">{file.path}</span>
       <span>{(file.size / 1000000).toFixed(2)} MB</span>
     </div>
   ));
