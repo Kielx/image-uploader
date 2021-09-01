@@ -1,14 +1,15 @@
-import React from "react";
-import ImageUploader from "./components/ImageUploader";
-import ImageUploaded from "./components/ImageUploaded";
-import Footer from "./components/Footer";
-import ProgressBar from "./components/ProgressBar";
+import React, { Suspense, lazy } from "react";
 import { useSelector } from "react-redux";
-
-import "@fontsource/poppins";
-import "./App.css";
+import LoadingSpinner from "./components/LoadingSpinner";
 // eslint-disable-next-line no-unused-vars
 import firebase from "./firebase/firebase";
+import "@fontsource/poppins";
+import "./App.css";
+
+const ImageUploader = lazy(() => import("./components/ImageUploader"));
+const ImageUploaded = lazy(() => import("./components/ImageUploaded"));
+const Footer = lazy(() => import("./components/Footer"));
+const ProgressBar = lazy(() => import("./components/ProgressBar"));
 
 function App() {
   const loaded = useSelector((state) => state.imageUpload.loaded);
@@ -19,12 +20,18 @@ function App() {
       {/*First Check if the image is not loaded - if it is then check if it should display upload component or progress when loading*/}
       {!loaded ? (
         !loading ? (
-          <ImageUploader />
+          <Suspense fallback={<LoadingSpinner />}>
+            <ImageUploader />
+          </Suspense>
         ) : (
-          <ProgressBar />
+          <Suspense fallback={<LoadingSpinner />}>
+            <ProgressBar />
+          </Suspense>
         )
       ) : (
-        <ImageUploaded></ImageUploaded>
+        <Suspense fallback={<LoadingSpinner />}>
+          <ImageUploaded></ImageUploaded>
+        </Suspense>
       )}
 
       <Footer></Footer>
