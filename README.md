@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+<div align="center">
+<img alt="logo" src="https://github.com/Kielx/image-uploader/blob/master/public/GHlogo.png?raw=true" width="250" height="250" />
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Image uploader allows users to upload images to firebase hosted storage. App is built using React.js and Firebase with state stored in Redux.
+Offers clean design and user friendly interface. Also with dark mode. Styling with TailwindCSS.
+## Table of contents
 
-## Available Scripts
+  - [Table of contents](#table-of-contents)
+  - [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Video](#video)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Author](#author)
+  - [Acknowledgments](#acknowledgments)
 
-In the project directory, you can run:
 
-### `yarn start`
+## Overview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The project was a challenge from [Image-Uploader](https://devchallenges.io/challenges/O2iGT9yBd6xZBrOcVirx).
+In this simple looking project I had to incorporate React, Redux and Firebase together to create a image uploader that can serve as a cornerstone for future projects.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### The challenge
 
-### `yarn test`
+Create an Image Uploader application. Use any front-end libraries of your choice. Create your API. Don’t look at the existing solution. Fulfill user stories below:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- I can drag and drop an image to upload it
+- I can choose to select an image from my folder
+- I can see a loader when uploading
+- When the image is uploaded, I can see the image and copy it
+- I can choose to copy to the clipboard
 
-### `yarn build`
+### Video
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+https://user-images.githubusercontent.com/51516375/130857965-c57eaeaf-ac65-40aa-a73a-a83aa81426d9.mp4
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Built with
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Semantic HTML5 markup
+- Flexbox
+- CSS Grid
+- Mobile-first workflow
+- [React](https://reactjs.org/)
+- [Redux](https://redux.js.org/)
+- [Firebase](https://firebase.google.com/)
+- [Tailwind CSS](https://tailwindcss.com//)
 
-### `yarn eject`
+### What I learned
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+This was my first project using Firebase and Redux. It allowed to me grasp those concepts in simple but effective way.
+Also another solid step in my Frontend React and TailwindCSS skills. 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Author
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Website - [Chris Pantak](https://pantak.net)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Acknowledgments
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Again used beautiful CSS spinner from [Loading.io](https://loading.io/css/) 
+- This is a solution to the [Image-Uploader](https://devchallenges.io/challenges/O2iGT9yBd6xZBrOcVirx).
