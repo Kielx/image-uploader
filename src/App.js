@@ -1,18 +1,18 @@
 import React, { Suspense, lazy } from "react";
 import { useSelector } from "react-redux";
 import LoadingSpinner from "./components/LoadingSpinner";
-import Card from "./components/Card";
-import ToggleDarkMode from "./components/ToggleDarkMode";
 
 // eslint-disable-next-line no-unused-vars
 import firebase from "./firebase/firebase";
 import "@fontsource/poppins";
 import "./App.css";
 
+const Card = lazy(() => import("./components/Card"));
 const ImageUploader = lazy(() => import("./components/ImageUploader"));
 const ImageUploaded = lazy(() => import("./components/ImageUploaded"));
 const Footer = lazy(() => import("./components/Footer"));
 const ProgressBar = lazy(() => import("./components/ProgressBar"));
+const ToggleDarkMode = lazy(() => import("./components/ToggleDarkMode"));
 
 function App() {
   const loaded = useSelector((state) => state.imageUpload.loaded);

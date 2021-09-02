@@ -1,25 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Toggle from "react-toggle";
+import { useSelector, useDispatch } from "react-redux";
+import { setDarkMode } from "../redux/darkModeSlice";
 
 const ToggleDarkMode = () => {
-  const [darkMode, setDarkMode] = useState(
-    typeof window !== "undefined"
-      ? JSON.parse(localStorage.getItem("darkMode")) || false
-      : false
-  );
+  const dispatch = useDispatch();
+  const darkMode = useSelector((state) => state.darkMode.darkMode);
 
   useEffect(() => {
     localStorage.setItem("darkMode", darkMode);
-    setDarkMode(darkMode);
+    dispatch(setDarkMode(darkMode));
     darkMode
       ? document.documentElement.classList.add("dark")
       : document.documentElement.classList.remove("dark");
-  }, [darkMode]);
+  }, [darkMode, dispatch]);
 
   return (
     <label className="absolute top-3 right-3">
       <Toggle
-        onChange={() => setDarkMode(!darkMode)}
+        onChange={() => dispatch(setDarkMode(!darkMode))}
         defaultChecked={darkMode}
         icons={{
           checked: (

@@ -1,9 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-const ImageUploaded = ({ darkMode }) => {
+const ImageUploaded = () => {
   const uploadedImage = useSelector((state) => state.imageUpload.uploadedImage);
   const downloadURL = useSelector((state) => state.imageUpload.downloadURL);
+  const darkMode = useSelector((state) => state.darkMode.darkMode);
   return (
     <>
       <span>
@@ -14,8 +15,7 @@ const ImageUploaded = ({ darkMode }) => {
           height="64"
           viewBox="0 0 24 24"
           strokeWidth="1"
-          //stroke={darkMode ? "#1e1e1e" : "#ffffff"}
-          stroke="transparent"
+          stroke={darkMode ? "#1e1e1e" : "#ffffff"}
           fill="#10B981"
           strokeLinecap="round"
           strokeLinejoin="round"
