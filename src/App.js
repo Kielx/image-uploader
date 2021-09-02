@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import LoadingSpinner from "./components/LoadingSpinner";
 
 // eslint-disable-next-line no-unused-vars
-import firebase from "./firebase/firebase";
+import { firebase, appCheck } from "./firebase/firebase";
 import "@fontsource/poppins";
 import "./App.css";
 

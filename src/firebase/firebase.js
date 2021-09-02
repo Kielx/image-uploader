@@ -27,4 +27,4 @@ const appCheck = initializeAppCheck(firebase, {
   isTokenAutoRefreshEnabled: true,
 });
 
-export default firebase;
+export { firebase, appCheck };
