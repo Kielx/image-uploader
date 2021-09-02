@@ -113,8 +113,8 @@ const ImageUploader = () => {
   }, [acceptedFiles, dispatch]);
 
   return (
-    <div className="relative flex flex-col space-y-6 items-center w-full max-w-md shadow-md bg-white dark:bg-dp01 rounded-[12px] m-auto py-12 px-8">
-      <h1 className="text-[#4F4F4F] text-2xl dark:text-grayGray-100">
+    <>
+      <h1 className="transition-all text-[#4F4F4F] text-2xl dark:text-grayGray-100">
         Upload your image
       </h1>
       {isDragReject ? (
@@ -186,7 +186,7 @@ const ImageUploader = () => {
           </button>
         </>
       )}
-    </div>
+    </>
   );
 };
 

@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 const ProgressBar = () => {
   const progress = useSelector((state) => state.progress.value);
   return (
-    <div className="relative flex flex-col space-y-6 items-start w-full max-w-md shadow-md bg-white dark:bg-dp01 rounded-[12px] m-auto py-12 px-8">
+    <>
       <h1 className="text-[#4F4F4F] text-xl dark:text-gray-100">
         Uploading...
       </h1>
@@ -16,7 +16,7 @@ const ProgressBar = () => {
           ></div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
