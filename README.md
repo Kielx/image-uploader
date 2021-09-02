@@ -2,8 +2,8 @@
 <img alt="logo" src="https://github.com/Kielx/image-uploader/blob/master/public/GHlogo.png?raw=true" width="250" height="250" />
 </div>
 
-Image uploader allows users to upload images to firebase hosted storage. App is built using React.js and Firebase with state stored in Redux.
-Offers clean design and user friendly interface. Also with dark mode. Styling with TailwindCSS with dark mode following Material Design Principles.
+Image uploader allows users to upload images to firebase hosted storage. The app is built using React.js and Firebase with state stored in Redux.
+Offers a clean design and a user-friendly interface. Also with dark mode. Styling with TailwindCSS with dark mode following Material Design Principles.
 ## Table of contents
 
   - [Table of contents](#table-of-contents)
@@ -19,7 +19,7 @@ Offers clean design and user friendly interface. Also with dark mode. Styling wi
 ## Overview
 
 The project was a challenge from [Image-Uploader](https://devchallenges.io/challenges/O2iGT9yBd6xZBrOcVirx).
-In this simple looking project I had to incorporate React, Redux and Firebase together to create a image uploader that can serve as a cornerstone for future projects.
+In this simple-looking project, I had to incorporate React, Redux, and Firebase together to create an image uploader that can serve as a cornerstone for future projects.
 
 ### The challenge
 
@@ -48,8 +48,8 @@ https://user-images.githubusercontent.com/51516375/131900661-14bd5abf-1a66-4302-
 
 ### What I learned
 
-This was my first project using Firebase and Redux. It allowed to me grasp those concepts in simple but effective way.
-Also another solid step in my Frontend React and TailwindCSS skills. 
+This was my first project using Firebase and Redux. It allowed to me grasp those concepts in a simple but effective way.
+Also, another solid step in my Frontend React and TailwindCSS skills. 
 
 ## Author
 
