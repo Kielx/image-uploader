@@ -16,7 +16,7 @@ const ToggleDarkMode = () => {
   }, [darkMode, dispatch]);
 
   return (
-    <label className="absolute top-3 right-3">
+    <label aria-label="Dark Mode toggle" className="absolute top-3 right-3">
       <Toggle
         onChange={() => dispatch(setDarkMode(!darkMode))}
         defaultChecked={darkMode}
