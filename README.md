@@ -3,7 +3,7 @@
 </div>
 
 Image uploader allows users to upload images to firebase hosted storage. App is built using React.js and Firebase with state stored in Redux.
-Offers clean design and user friendly interface. Also with dark mode. Styling with TailwindCSS.
+Offers clean design and user friendly interface. Also with dark mode. Styling with TailwindCSS with dark mode following Material Design Principles.
 ## Table of contents
 
   - [Table of contents](#table-of-contents)
@@ -33,7 +33,7 @@ Create an Image Uploader application. Use any front-end libraries of your choice
 
 ### Video
 
-https://user-images.githubusercontent.com/51516375/130857965-c57eaeaf-ac65-40aa-a73a-a83aa81426d9.mp4
+https://user-images.githubusercontent.com/51516375/131900661-14bd5abf-1a66-4302-a68d-b842ab3011ac.mp4
 
 ### Built with
 
